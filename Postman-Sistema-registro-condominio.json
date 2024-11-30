@@ -1,0 +1,546 @@
+{
+	"info": {
+		"_postman_id": "d7977d22-e9f6-463c-86f7-f4f68222010c",
+		"name": "Pruebas: Sistema control acceso vehículos condominio",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40083732"
+	},
+	"item": [
+		{
+			"name": "Acceso",
+			"item": [
+				{
+					"name": "1. Control de acceso al sistema",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"usuario\": \"admin\",\r\n    \"contrasena\": \"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Guardia",
+			"item": [
+				{
+					"name": "2. Listar guardias",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/guardias/listar",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"guardias",
+								"listar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3. Añadir nuevo guardia",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"usuario\": \"guardia2\",\r\n    \"contrasena\": \"clave2\",\r\n    \"rut\": \"98765432-1\",\r\n    \"nombre_completo\": \"Guardia Dos\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/guardias/nuevo",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"guardias",
+								"nuevo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3. Añadir nuevo guardia (RUT duplicado)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"usuario\": \"guardia1\",\r\n    \"contrasena\": \"clave1\",\r\n    \"rut\": \"12345678-9\",\r\n    \"nombre_completo\": \"Guardia Uno\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/guardias/nuevo",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"guardias",
+								"nuevo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4. Editar guardia existente",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre_completo\": \"Guardia Actualizado\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/guardias/editar/12345678-9",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"guardias",
+								"editar",
+								"12345678-9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5. Eliminar guardia",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/guardias/eliminar/98765432-1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"guardias",
+								"eliminar",
+								"98765432-1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Departamento",
+			"item": [
+				{
+					"name": "6. Listar departamentos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/departamentos/listar",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"departamentos",
+								"listar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "7. Crear nuevo departamento",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"codigo_departamento\": \"D101\",\r\n    \"numero_estacionamiento\": 10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/departamentos/nuevo",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"departamentos",
+								"nuevo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "8. Editar departamento existente",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"numero_estacionamiento\": 15\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/departamentos/editar/D101",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"departamentos",
+								"editar",
+								"D101"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "9. Eliminar departamento",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/departamentos/eliminar/D101",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"departamentos",
+								"eliminar",
+								"D101"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Residente",
+			"item": [
+				{
+					"name": "10. Listar Residentes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/residentes/listar",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"residentes",
+								"listar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "11. Crear nuevo residente",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"rut\": \"33333333-3\",\r\n    \"nombre_completo\": \"Residente 3\",\r\n    \"departamento_id\": \"A200\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/residentes/nuevo",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"residentes",
+								"nuevo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "12. Editar residente",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre_completo\": \"Residente Actualizado\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/residentes/editar/33333333-3",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"residentes",
+								"editar",
+								"33333333-3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "13. Eliminar residente",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/residentes/eliminar/33333333-3",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"residentes",
+								"eliminar",
+								"33333333-3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Vehículo",
+			"item": [
+				{
+					"name": "14. Listar vehículos",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "15. Asignar nuevo vehículo",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"patente\": \"PATENTE3\",\r\n    \"departamento_id\": \"A100\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/vehiculos/nuevo",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"vehiculos",
+								"nuevo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "16. Editar Vehículo",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"departamento_id\": \"A200\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/vehiculos/editar/PATENTE3",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"vehiculos",
+								"editar",
+								"PATENTE3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "17. Eliminar vehículo",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/vehiculos/eliminar/PATENTE3",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"vehiculos",
+								"eliminar",
+								"PATENTE3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Registro de acceso",
+			"item": [
+				{
+					"name": "18. Registrar actividad de ingreso",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"patente\": \"ABC123\",\r\n    \"nombre_completo\": \"Visita Pérez Soto\",\r\n    \"rut\": \"12345678-9\",\r\n    \"departamento_id\": \"A100\",\r\n    \"es_visita\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/registro-actividad/ingreso",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"registro-actividad",
+								"ingreso"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "19. Registrar actividad de salida",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/registro-actividad/salida/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"registro-actividad",
+								"salida",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "20. Listar registros de actividad de ingreso",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/registro-actividad/listar",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"registro-actividad",
+								"listar"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "1"
+		},
+		{
+			"key": "base_url",
+			"value": "https://postman-rest-api-learner.glitch.me/"
+		}
+	]
+}

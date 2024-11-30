@@ -1,0 +1,28 @@
+# Entorno virtual
+.venv/
+
+# Archivos de dependencias de Python
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# Directorio de datos de PostgreSQL
+pgdata/
+
+# Archivos de distribución
+*.tar.gz
+*.zip
+*.tar
+*.whl
+
+# Archivos de compilación y dist de Python
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# Docker y sus archivos generados
+docker-compose.override.yml
+docker-compose.override.yml.dist
+Dockerfile*

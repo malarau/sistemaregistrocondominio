@@ -1,0 +1,45 @@
+services:
+
+  pgdatabase:
+    image: postgres
+    container_name: pgdatabase
+    environment:
+      - POSTGRES_USER=pguser
+      - POSTGRES_PASSWORD=pgpassword
+      - POSTGRES_DB=pgdatabase
+    volumes:
+      - "./pgdata:/var/lib/postgresql/data:rw"  # Almacena los datos en ./pgdata
+    ports:
+      - "5432:5432"
+    healthcheck: # Es necesario para confirmar que la base de datos ya está aceptando conexiones!
+      # https://www.postgresql.org/docs/current/app-pg-isready.html
+      test: ["CMD-SHELL", "pg_isready -d pgdatabase -U pguser"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@condominio.com
+      - PGADMIN_DEFAULT_PASSWORD=root
+    ports:
+      - "8080:80"
+
+  flaskapp:
+    build:
+      context: ./flaskapp
+      dockerfile: Dockerfile
+    environment:
+      - FLASK_APP=app.py
+      - FLASK_ENV=development
+      - DB_HOST=pgdatabase
+      - DB_PORT=5432
+      - DB_NAME=pgdatabase
+      - DB_USER=pguser
+      - DB_PASSWORD=pgpassword
+    ports:
+      - "5000:5000"
+    depends_on:
+      pgdatabase:
+        condition: service_healthy # Es necesario para confirmar que la base de datos ya está aceptando conexiones!
