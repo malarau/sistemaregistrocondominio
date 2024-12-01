@@ -1,3 +1,56 @@
+## Aplicación
+
+- Implementación de sistema de registro de vehículos en condominio.
+- Pruebas usando: [Requerimientos en Postman](Postman-Sistema-registro-condominio.json).
+
+
+## Arquitectura de la Aplicación
+
+Docker > Flask > SQLAlchemy > PostgreSQL > PgAdmin
+
+```
+- Contenedor: Docker
+- BackEnd: Flask
+- ORM: SQLAlchemy
+- Base de datos: PostgreSQL
+- Administración BD: PgAdmin
+```
+
+Docker-Compose construye y levanta 3 contenedores: Flask API, PostgreSQL y PgAdmin.
+
+```mermaid
+%%{init: {'theme':'forest'}}%%
+flowchart TB
+    subgraph Testing
+        A[Postman] -->|Pruebas de Endpoints| B[Flask API]
+    end
+
+    subgraph Aplicación
+        B --> |ORM| C[SQLAlchemy]
+        C --> |Conexión| D[(PostgreSQL)]
+    end
+
+    subgraph Administración
+        E[PgAdmin] -->|Gestión de Datos| D
+    end
+
+    subgraph Infraestructura
+        F[Docker Compose] --> |Orquesta| B
+        F --> |Orquesta| D
+        F --> |Orquesta| E
+    end
+
+    classDef testing fill:#f96,stroke:#333,stroke-width:2px;
+    classDef app fill:#bbf,stroke:#333,stroke-width:2px;
+    classDef admin fill:#bfb,stroke:#333,stroke-width:2px;
+    classDef infra fill:#ff9,stroke:#333,stroke-width:2px;
+
+    class A testing;
+    class B,C app;
+    class D,E admin;
+    class F infra;
+```
+
 ## Inicio y configuración
 
 ### Instalación
@@ -5,13 +58,14 @@
 1. Instalar Docker-Compose:
 ```
 https://docs.docker.com/compose/install/
-
 ```
 
-2. Clonar el repo
+2. Clonar el repo:
+```
+git clone https://github.com/malarau/sistemaregistrocondominio.git
+```
 
-3. Construir e iniciar:
-
+3. Construir e iniciar (terminal o CMD en el mismo directorio):
 ```
 docker-compose up --build
 ```
@@ -23,6 +77,8 @@ http://127.0.0.1:5000/
 
 - PgAdmin:
 http://localhost:8080/
+
+- Postman (importar en app): [Requerimientos en Postman](Postman-Sistema-registro-condominio.json)
 
 
 ## Prueba de requerimientos
