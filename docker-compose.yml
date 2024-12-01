@@ -25,6 +25,9 @@ services:
       - PGADMIN_DEFAULT_PASSWORD=root
     ports:
       - "8080:80"
+    depends_on:
+      pgdatabase:
+        condition: service_healthy # Es necesario para confirmar que la base de datos ya está aceptando conexiones!
 
   flaskapp:
     build:
