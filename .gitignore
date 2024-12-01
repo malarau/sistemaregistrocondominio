@@ -25,4 +25,3 @@ __pycache__/
 # Docker y sus archivos generados
 docker-compose.override.yml
 docker-compose.override.yml.dist
-Dockerfile*
