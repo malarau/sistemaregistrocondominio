@@ -78,6 +78,11 @@ http://127.0.0.1:5000/
 - PgAdmin:
 http://localhost:8080/
 
+```
+- PGADMIN_DEFAULT_EMAIL=admin@condominio.com
+- PGADMIN_DEFAULT_PASSWORD=root
+```
+
 - Postman (importar en app): [Requerimientos en Postman](Postman-Sistema-registro-condominio.json)
 
 
